@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Houseki no Kuni - Фан-игра</title>
+    <style>
+        /* ============================================================
+                   БАЗОВЫЕ СТИЛИ
+                   ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, #0a1628 0%, #1a3a5c 40%, #2d6b8a 70%, #4a9bb8 100%);
+            color: #e8f4f8;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+                   ШАПКА
+                   ============================================================ */
+        .header {
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.95), rgba(26, 58, 92, 0.9));
+            padding: 20px 0;
+            border-bottom: 3px solid rgba(74, 155, 184, 0.6);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 36px;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #7ec8e3, #4a9bb8, #2d6b8a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px rgba(74, 155, 184, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            font-size: 14px;
+            color: #7ec8e3;
+            -webkit-text-fill-color: #7ec8e3;
+            opacity: 0.8;
+        }
+
+        .nav {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+            .nav a {
+                color: #b8dce8;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: 500;
+                padding: 8px 16px;
+                border-radius: 25px;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+                .nav a::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 2px;
+                    left: 50%;
+                    width: 0;
+                    height: 2px;
+                    background: linear-gradient(90deg, #4a9bb8, #7ec8e3);
+                    transition: all 0.3s ease;
+                    transform: translateX(-50%);
+                }
+
+                .nav a:hover {
+                    color: #ffffff;
+                    background: rgba(74, 155, 184, 0.15);
+                }
+
+                    .nav a:hover::after {
+                        width: 70%;
+                    }
+
+            .nav .play-btn {
+                background: linear-gradient(135deg, #4a9bb8, #2d6b8a);
+                color: #fff;
+                padding: 8px 24px;
+                border-radius: 25px;
+                box-shadow: 0 4px 15px rgba(74, 155, 184, 0.4);
+            }
+
+                .nav .play-btn:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 25px rgba(74, 155, 184, 0.6);
+                }
+
+                .nav .play-btn::after {
+                    display: none;
+                }
+
+        /* ============================================================
+                   ГЕРОЙ (БАННЕР)
+                   ============================================================ */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+            .hero::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 300px;
+                height: 300px;
+                background: radial-gradient(circle, rgba(74, 155, 184, 0.15), transparent 70%);
+                border-radius: 50%;
+                pointer-events: none;
+            }
+
+            .hero h2 {
+                font-size: 48px;
+                font-weight: 800;
+                margin-bottom: 20px;
+                position: relative;
+            }
+
+                .hero h2 .highlight {
+                    background: linear-gradient(135deg, #7ec8e3, #4a9bb8);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+
+            .hero p {
+                font-size: 18px;
+                color: #b8dce8;
+                max-width: 700px;
+                margin: 0 auto 30px;
+                position: relative;
+            }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4a9bb8, #2d6b8a);
+            color: #fff;
+            border: none;
+            padding: 14px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(74, 155, 184, 0.4);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .btn-primary:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 35px rgba(74, 155, 184, 0.6);
+            }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: #b8dce8;
+            border: 2px solid rgba(74, 155, 184, 0.4);
+            padding: 14px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            backdrop-filter: blur(5px);
+        }
+
+            .btn-secondary:hover {
+                background: rgba(74, 155, 184, 0.15);
+                border-color: #4a9bb8;
+                transform: translateY(-3px);
+            }
+
+        /* ============================================================
+                   КАРТА
+                   ============================================================ */
+        .section-map {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #7ec8e3;
+            font-size: 16px;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        .map-container {
+            position: relative;
+            background: linear-gradient(145deg, rgba(10, 22, 40, 0.8), rgba(26, 58, 92, 0.6));
+            border-radius: 20px;
+            border: 1px solid rgba(74, 155, 184, 0.2);
+            padding: 20px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .map-image-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+            .map-image-wrapper img {
+                width: 100%;
+                height: auto;
+                display: block;
+                border-radius: 12px;
+            }
+
+        /* Метки на карте */
+        .map-marker {
+            position: absolute;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+            .map-marker .marker-dot {
+                width: 20px;
+                height: 20px;
+                background: radial-gradient(circle, #7ec8e3, #2d6b8a);
+                border-radius: 50%;
+                border: 2px solid #fff;
+                box-shadow: 0 0 20px rgba(74, 155, 184, 0.6);
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+                .map-marker .marker-dot::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    border: 2px solid rgba(74, 155, 184, 0.3);
+                    animation: pulse 2s ease-in-out infinite;
+                }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1.8);
+                opacity: 0;
+            }
+        }
+
+        .map-marker:hover .marker-dot {
+            transform: scale(1.3);
+            box-shadow: 0 0 35px rgba(74, 155, 184, 0.9);
+        }
+
+        .map-marker .marker-label {
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 22, 40, 0.9);
+            color: #e8f4f8;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            white-space: nowrap;
+            border: 1px solid rgba(74, 155, 184, 0.3);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .map-marker:hover .marker-label {
+            opacity: 1;
+            bottom: 32px;
+        }
+
+        /* Попап при клике на метку */
+        .marker-popup {
+            position: absolute;
+            z-index: 20;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 155, 184, 0.4);
+            border-radius: 16px;
+            padding: 20px 24px;
+            max-width: 280px;
+            box-shadow: 0 12px 50px rgba(0, 0, 0, 0.6);
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .marker-popup.active {
+            display: block;
+        }
+
+        .marker-popup h4 {
+            color: #7ec8e3;
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .marker-popup p {
+            color: #b8dce8;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .marker-popup .popup-close {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: #7ec8e3;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+            .marker-popup .popup-close:hover {
+                opacity: 1;
+            }
+
+        /* Легенда карты */
+        .map-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 25px;
+            padding: 15px 20px;
+            margin-top: 15px;
+            background: rgba(10, 22, 40, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(74, 155, 184, 0.15);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #b8dce8;
+        }
+
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+            .legend-color.player {
+                background: radial-gradient(circle, #7ec8e3, #2d6b8a);
+            }
+
+            .legend-color.fishing {
+                background: radial-gradient(circle, #4ade80, #166534);
+            }
+
+            .legend-color.dungeon {
+                background: radial-gradient(circle, #f87171, #991b1b);
+            }
+
+            .legend-color.shop {
+                background: radial-gradient(circle, #fbbf24, #92400e);
+            }
+
+        /* ============================================================
+                   БЛОКИ ОПИСАНИЙ (FEATURES)
+                   ============================================================ */
+        .section-features {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, rgba(10, 22, 40, 0.8), rgba(26, 58, 92, 0.5));
+            border-radius: 20px;
+            border: 1px solid rgba(74, 155, 184, 0.15);
+            padding: 30px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+            .feature-card:hover {
+                transform: translateY(-6px);
+                border-color: rgba(74, 155, 184, 0.4);
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            }
+
+            .feature-card .icon {
+                font-size: 40px;
+                margin-bottom: 15px;
+                display: block;
+            }
+
+            .feature-card h3 {
+                font-size: 22px;
+                font-weight: 700;
+                color: #7ec8e3;
+                margin-bottom: 12px;
+            }
+
+            .feature-card p {
+                color: #b8dce8;
+                font-size: 15px;
+                line-height: 1.7;
+                margin-bottom: 15px;
+            }
+
+            .feature-card .feature-img {
+                width: 100%;
+                border-radius: 12px;
+                margin-top: 10px;
+                border: 1px solid rgba(74, 155, 184, 0.15);
+            }
+
+            .feature-card .feature-img-placeholder {
+                width: 100%;
+                height: 140px;
+                background: linear-gradient(135deg, rgba(74, 155, 184, 0.15), rgba(10, 22, 40, 0.5));
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #4a6a7a;
+                font-size: 14px;
+                border: 1px dashed rgba(74, 155, 184, 0.2);
+                margin-top: 10px;
+            }
+
+        /* ============================================================
+                   ПОДВАЛ
+                   ============================================================ */
+        .footer {
+            background: rgba(10, 22, 40, 0.8);
+            border-top: 1px solid rgba(74, 155, 184, 0.15);
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            color: #4a6a7a;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #4a9bb8;
+            text-decoration: none;
+        }
+
+            .footer a:hover {
+                color: #7ec8e3;
+            }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+            .footer-social a {
+                color: #4a6a7a;
+                font-size: 22px;
+                transition: color 0.3s;
+                text-decoration: none;
+            }
+
+                .footer-social a:hover {
+                    color: #7ec8e3;
+                }
+
+        /* ============================================================
+                   МЕДИА-ЗАПРОСЫ (АДАПТАЦИЯ)
+                   ============================================================ */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo h1 {
+                font-size: 22px;
+            }
+
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .map-marker .marker-label {
+                font-size: 9px;
+                padding: 2px 8px;
+            }
+
+            .marker-popup {
+                max-width: 200px;
+                padding: 14px 16px;
+            }
+
+                .marker-popup h4 {
+                    font-size: 15px;
+                }
+
+                .marker-popup p {
+                    font-size: 12px;
+                }
+
+            .section-title {
+                font-size: 26px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 26px;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 10px 24px;
+                font-size: 15px;
+            }
+
+            .nav {
+                gap: 10px;
+                justify-content: center;
+            }
+
+                .nav a {
+                    font-size: 14px;
+                    padding: 6px 12px;
+                }
+        }
+
+        /* ============================================================
+                   ВСПОМОГАТЕЛЬНЫЕ КЛАССЫ
+                   ============================================================ */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    ШАПКА
+    ============================================================ -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">💎</span>
+                <div>
+                    <h1>Houseki no Kuni</h1>
+                    <span>Фан-игра по мотивам</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <a href="#map">Карта</a>
+                <a href="#features">Механики</a>
+                <a href="#about">Об игре</a>
+                <a href="https://xelleras.github.io/HousekiNoKuniCOLLABORATION.github.io/" class="play-btn" target="_blank">▶ Играть</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    ГЕРОЙ (БАННЕР)
+    ============================================================ -->
+    <section class="hero">
+        <h2>
+            Добро пожаловать в мир<br>
+            <span class="highlight">Houseki no Kuni</span>
+        </h2>
+        <p>
+            Исследуйте мир, наполненный кристаллами и тайнами.
+            Сражайтесь, собирайте ресурсы и раскрывайте историю
+            вместе с героями этой удивительной вселенной.
+        </p>
+        <div class="hero-buttons">
+            <a href="https://xelleras.github.io/HousekiNoKuniCOLLABORATION.github.io/" class="btn-primary" target="_blank">▶ Играть сейчас</a>
+            <a href="#features" class="btn-secondary">Узнать больше</a>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    КАРТА
+    ============================================================ -->
+    <section class="section-map" id="map">
+        <h2 class="section-title">Карта острова</h2>
+        <p class="section-subtitle">Нажмите на метку, чтобы узнать подробности</p>
+
+        <div class="map-container">
+            <div class="map-image-wrapper" id="mapWrapper">
+                <!-- ЗАМЕНИТЕ src НА ВАШУ КАРТУ -->
+                <img src="img/Map.png"
+                     alt="Карта мира"
+                     id="mapImage"
+                     style="width:100%; height:auto; border-radius:12px;" />
+
+                <!-- МЕТКА 1: Персонаж -->
+                <div class="map-marker" style="top: 35%; left: 25%;" data-popup="popup-player">
+                    <div class="marker-dot"></div>
+                    <span class="marker-label">Игрок</span>
+                </div>
+
+                <!-- МЕТКА 2: Рыбные места -->
+                <div class="map-marker" style="top: 55%; left: 45%;" data-popup="popup-fishing">
+                    <div class="marker-dot" style="background: radial-gradient(circle, #4ade80, #166534);"></div>
+                    <span class="marker-label">Рыбалка</span>
+                </div>
+
+               
+                <!-- МЕТКА 3: Храм -->
+                <div class="map-marker" style="top: 15%; left: 40%;" data-popup="popup-temple">
+                    <div class="marker-dot" style="background: radial-gradient(circle, #c084fc, #7c3aed);"></div>
+                    <span class="marker-label">Школа</span>
+                </div>
+
+                <!-- ПОПАПЫ (скрыты по умолчанию) -->
+                <div class="marker-popup" id="popup-player" style="top: 30%; left: 5%;">
+                    <button class="popup-close" onclick="closePopup('popup-player')">✕</button>
+                    <h4>Игрок</h4>
+                    <p>Здесь начинается ваше приключение. Отправляйтесь в путь, чтобы исследовать мир и раскрыть его тайны.</p>
+                </div>
+
+                                <div class="marker-popup" id="popup-temple" style="top: 10%; left: 25%;">
+                    <button class="popup-close" onclick="closePopup('popup-temple')">✕</button>
+                    <h4>Храм</h4>
+                    <p>Древнее место силы. Здесь можно восстановить здоровье и получить благословение.</p>
+                </div>
+            </div>
+
+            <!-- Легенда -->
+            <div class="map-legend">
+                <span class="legend-item"><span class="legend-color player"></span> Игрок</span>
+                <span class="legend-item"><span class="legend-color fishing"></span> Рыбные места</span>
+                <span class="legend-item"><span class="legend-color dungeon"></span> Подземелья</span>
+                <span class="legend-item"><span class="legend-color shop"></span> Магазины</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    БЛОКИ МЕХАНИК (FEATURES)
+    ============================================================ -->
+    <section class="section-features" id="features">
+        <h2 class="section-title">Механики игры</h2>
+        <p class="section-subtitle">Узнайте, что вас ждёт в этом РП проекте</p>
+
+        <div class="features-grid">
+
+            <!-- Блок 1: Рыбалка -->
+            <div class="feature-card">
+                <h3>Рыбалка</h3>
+                <p>
+                    Наслаждайтесь рыбалкой в различных водоёмах. Ловите редкие виды,
+                    используйте разные виды наживок и удочек. У каждой рыбы свой вес
+                    и длина, а также свои предпочтения к наживке.
+                </p>
+                <div class="feature-img-placeholder">
+                    <img src="img/fish.png" alt="Рыбалка" class="feature-img">
+                </div>
+                <!-- РАСКОММЕНТИРУЙТЕ, КОГДА БУДЕТ ИЗОБРАЖЕНИЕ -->
+                <!-- <img src="img/fishing-preview.png" alt="Рыбалка" class="feature-img"> -->
+            </div>
+
+            <!-- Блок 2: День/Ночь -->
+            <div class="feature-card">
+                <span class="icon">🌙</span>
+                <h3>Цикл дня и ночи</h3>
+                <div class="feature-img-placeholder">
+                    <img src="img/cycle.png" alt="Рыбалка" class="feature-img">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================
+    ОБ ИГРЕ
+    ============================================================ -->
+    <section class="section-features" id="about" style="padding-top: 0;">
+        <div style="max-width: 900px; margin: 0 auto; background: linear-gradient(145deg, rgba(10,22,40,0.6), rgba(26,58,92,0.3)); border-radius: 20px; padding: 40px; border: 1px solid rgba(74,155,184,0.15);">
+            <h2 class="text-center" style="font-size: 28px; margin-bottom: 20px;">📖 Об игре</h2>
+            <p style="color: #b8dce8; font-size: 16px; line-height: 1.8; text-align: center; max-width: 700px; margin: 0 auto;">
+                <strong style="color: #7ec8e3;">Houseki no Kuni</strong> — это фан-игра, созданная по мотивам одноимённой
+                манги и аниме. Игроки погружаются в мир, населённый кристаллическими существами,
+                и исследуют его тайны. В игре вас ждут увлекательные приключения,
+                битвы, рыбалка и множество других механик, которые делают мир живым и интересным.
+            </p>
+            <div style="text-align: center; margin-top: 25px;">
+                <a href="https://xelleras.github.io/HousekiNoKuniCOLLABORATION.github.io/" class="btn-primary" target="_blank">▶ Играть сейчас</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    ПОДВАЛ
+    ============================================================ -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-social">
+                <a href="#" title="Telegram">📱</a>
+                <a href="#" title="VK">🌐</a>
+                <a href="#" title="YouTube">▶️</a>
+                <a href="#" title="GitHub">💻</a>
+            </div>
+            <p>
+                © 2026 Houseki no Kuni — Фан-игра. Все права защищены.<br>
+                Сделано с вдохновением по мотивам <a href="#" target="_blank">Houseki no Kuni</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // ОТКРЫТИЕ/ЗАКРЫТИЕ ПОПАПОВ НА КАРТЕ
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Находим все метки
+            const markers = document.querySelectorAll('.map-marker');
+            const popups = document.querySelectorAll('.marker-popup');
+
+            // Клик по метке → открыть попап
+            markers.forEach(marker => {
+                marker.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const popupId = this.dataset.popup;
+                    const popup = document.getElementById(popupId);
+
+                    // Закрываем все попапы
+                    popups.forEach(p => p.classList.remove('active'));
+
+                    // Открываем нужный
+                    if (popup) {
+                        popup.classList.add('active');
+                    }
+                });
+            });
+
+            // Клик по пустому месту на карте → закрыть все попапы
+            document.querySelector('.map-image-wrapper').addEventListener('click', function (e) {
+                if (!e.target.closest('.map-marker') && !e.target.closest('.marker-popup')) {
+                    popups.forEach(p => p.classList.remove('active'));
+                }
+            });
+
+            // Клик по попапу не должен его закрывать
+            popups.forEach(p => {
+                p.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                });
+            });
+
+        });
+
+        // Функция закрытия попапа (вызывается из кнопки ✕)
+        function closePopup(popupId) {
+            const popup = document.getElementById(popupId);
+            if (popup) {
+                popup.classList.remove('active');
+            }
+        }
+
+        // ============================================================
+        // ПЛАВНАЯ ПРОКРУТКА К ЯКОРЯМ
+        // ============================================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ============================================================
+        // АДАПТАЦИЯ МЕТОК ПРИ ИЗМЕНЕНИИ РАЗМЕРА КАРТЫ
+        // ============================================================
+        function adjustMarkers() {
+            // Метки уже используют относительные проценты, ничего не делаем
+            // Но обновляем позиции попапов относительно карты
+            const wrapper = document.getElementById('mapWrapper');
+            const rect = wrapper.getBoundingClientRect();
+
+            document.querySelectorAll('.marker-popup').forEach(popup => {
+                // Попапы позиционируются абсолютно внутри wrapper
+                // Их позиции заданы в стилях через top/left в процентах,
+                // поэтому они адаптируются автоматически
+            });
+        }
+
+        // При загрузке и при изменении размера окна
+        window.addEventListener('load', adjustMarkers);
+        window.addEventListener('resize', adjustMarkers);
+
+    </script>
+
+</body>
+</html>
