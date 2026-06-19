@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Houseki no Kuni - Фан-игра</title>
     <style>
-        /* ============================================================
-                   БАЗОВЫЕ СТИЛИ
-                   ============================================================ */
+
         * {
             margin: 0;
             padding: 0;
@@ -22,9 +20,7 @@
             line-height: 1.6;
         }
 
-        /* ============================================================
-                   ШАПКА
-                   ============================================================ */
+
         .header {
             background: linear-gradient(135deg, rgba(10, 22, 40, 0.95), rgba(26, 58, 92, 0.9));
             padding: 20px 0;
@@ -129,9 +125,7 @@
                     display: none;
                 }
 
-        /* ============================================================
-                   ГЕРОЙ (БАННЕР)
-                   ============================================================ */
+
         .hero {
             text-align: center;
             padding: 80px 20px 60px;
@@ -223,9 +217,6 @@
                 transform: translateY(-3px);
             }
 
-        /* ============================================================
-                   КАРТА
-                   ============================================================ */
         .section-map {
             max-width: 1200px;
             margin: 0 auto;
@@ -271,7 +262,7 @@
                 border-radius: 12px;
             }
 
-        /* Метки на карте */
+
         .map-marker {
             position: absolute;
             cursor: pointer;
@@ -344,7 +335,7 @@
             bottom: 32px;
         }
 
-        /* Попап при клике на метку */
+
         .marker-popup {
             position: absolute;
             z-index: 20;
@@ -404,7 +395,7 @@
                 opacity: 1;
             }
 
-        /* Легенда карты */
+
         .map-legend {
             display: flex;
             flex-wrap: wrap;
@@ -447,9 +438,7 @@
                 background: radial-gradient(circle, #fbbf24, #92400e);
             }
 
-        /* ============================================================
-                   БЛОКИ ОПИСАНИЙ (FEATURES)
-                   ============================================================ */
+  
         .section-features {
             max-width: 1200px;
             margin: 0 auto;
@@ -518,9 +507,6 @@
                 margin-top: 10px;
             }
 
-        /* ============================================================
-                   ПОДВАЛ
-                   ============================================================ */
         .footer {
             background: rgba(10, 22, 40, 0.8);
             border-top: 1px solid rgba(74, 155, 184, 0.15);
@@ -566,9 +552,6 @@
                     color: #7ec8e3;
                 }
 
-        /* ============================================================
-                   МЕДИА-ЗАПРОСЫ (АДАПТАЦИЯ)
-                   ============================================================ */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -635,9 +618,6 @@
                 }
         }
 
-        /* ============================================================
-                   ВСПОМОГАТЕЛЬНЫЕ КЛАССЫ
-                   ============================================================ */
         .text-center {
             text-align: center;
         }
@@ -657,16 +637,13 @@
 </head>
 <body>
 
-    <!-- ============================================================
-    ШАПКА
-    ============================================================ -->
+
     <header class="header">
         <div class="header-content">
             <div class="logo">
-                <span class="logo-icon">💎</span>
                 <div>
                     <h1>Houseki no Kuni</h1>
-                    <span>Фан-игра по мотивам</span>
+                    <span>Фан-игра</span>
                 </div>
             </div>
             <nav class="nav">
@@ -678,18 +655,15 @@
         </div>
     </header>
 
-    <!-- ============================================================
-    ГЕРОЙ (БАННЕР)
-    ============================================================ -->
     <section class="hero">
         <h2>
-            Добро пожаловать в мир<br>
-            <span class="highlight">Houseki no Kuni</span>
+            Добро пожаловать в РП по HnK<br>
+            <span class="highlight">Шахта</span>
         </h2>
         <p>
-            Исследуйте мир, наполненный кристаллами и тайнами.
-            Сражайтесь, собирайте ресурсы и раскрывайте историю
-            вместе с героями этой удивительной вселенной.
+            Исследуйте мир. взаимодействуйте с NPC.
+            Сражайтесь, собирайте ресурсы и, разумеется,
+            наслаждайтесь РП процессом.
         </p>
         <div class="hero-buttons">
             <a href="https://xelleras.github.io/HousekiNoKuniCOLLABORATION.github.io/" class="btn-primary" target="_blank">▶ Играть сейчас</a>
@@ -697,41 +671,39 @@
         </div>
     </section>
 
-    <!-- ============================================================
-    КАРТА
-    ============================================================ -->
+
     <section class="section-map" id="map">
         <h2 class="section-title">Карта острова</h2>
         <p class="section-subtitle">Нажмите на метку, чтобы узнать подробности</p>
 
         <div class="map-container">
             <div class="map-image-wrapper" id="mapWrapper">
-                <!-- ЗАМЕНИТЕ src НА ВАШУ КАРТУ -->
-                <img src="img/Map.png"
+
+                <img src="img/map.png"
                      alt="Карта мира"
                      id="mapImage"
                      style="width:100%; height:auto; border-radius:12px;" />
 
-                <!-- МЕТКА 1: Персонаж -->
+
                 <div class="map-marker" style="top: 35%; left: 25%;" data-popup="popup-player">
                     <div class="marker-dot"></div>
                     <span class="marker-label">Игрок</span>
                 </div>
 
-                <!-- МЕТКА 2: Рыбные места -->
+
                 <div class="map-marker" style="top: 55%; left: 45%;" data-popup="popup-fishing">
                     <div class="marker-dot" style="background: radial-gradient(circle, #4ade80, #166534);"></div>
                     <span class="marker-label">Рыбалка</span>
                 </div>
 
                
-                <!-- МЕТКА 3: Храм -->
+
                 <div class="map-marker" style="top: 15%; left: 40%;" data-popup="popup-temple">
                     <div class="marker-dot" style="background: radial-gradient(circle, #c084fc, #7c3aed);"></div>
                     <span class="marker-label">Школа</span>
                 </div>
 
-                <!-- ПОПАПЫ (скрыты по умолчанию) -->
+
                 <div class="marker-popup" id="popup-player" style="top: 30%; left: 5%;">
                     <button class="popup-close" onclick="closePopup('popup-player')">✕</button>
                     <h4>Игрок</h4>
@@ -745,26 +717,22 @@
                 </div>
             </div>
 
-            <!-- Легенда -->
+
             <div class="map-legend">
                 <span class="legend-item"><span class="legend-color player"></span> Игрок</span>
                 <span class="legend-item"><span class="legend-color fishing"></span> Рыбные места</span>
-                <span class="legend-item"><span class="legend-color dungeon"></span> Подземелья</span>
-                <span class="legend-item"><span class="legend-color shop"></span> Магазины</span>
+                <span class="legend-item"><span class="legend-color dungeon"></span> NPC</span>
             </div>
         </div>
     </section>
 
-    <!-- ============================================================
-    БЛОКИ МЕХАНИК (FEATURES)
-    ============================================================ -->
+
     <section class="section-features" id="features">
         <h2 class="section-title">Механики игры</h2>
         <p class="section-subtitle">Узнайте, что вас ждёт в этом РП проекте</p>
 
         <div class="features-grid">
 
-            <!-- Блок 1: Рыбалка -->
             <div class="feature-card">
                 <h3>Рыбалка</h3>
                 <p>
@@ -775,13 +743,10 @@
                 <div class="feature-img-placeholder">
                     <img src="img/fish.png" alt="Рыбалка" class="feature-img">
                 </div>
-                <!-- РАСКОММЕНТИРУЙТЕ, КОГДА БУДЕТ ИЗОБРАЖЕНИЕ -->
-                <!-- <img src="img/fishing-preview.png" alt="Рыбалка" class="feature-img"> -->
+
             </div>
 
-            <!-- Блок 2: День/Ночь -->
             <div class="feature-card">
-                <span class="icon">🌙</span>
                 <h3>Цикл дня и ночи</h3>
                 <div class="feature-img-placeholder">
                     <img src="img/cycle.png" alt="Рыбалка" class="feature-img">
@@ -791,17 +756,12 @@
         </div>
     </section>
 
-    <!-- ============================================================
-    ОБ ИГРЕ
-    ============================================================ -->
     <section class="section-features" id="about" style="padding-top: 0;">
         <div style="max-width: 900px; margin: 0 auto; background: linear-gradient(145deg, rgba(10,22,40,0.6), rgba(26,58,92,0.3)); border-radius: 20px; padding: 40px; border: 1px solid rgba(74,155,184,0.15);">
-            <h2 class="text-center" style="font-size: 28px; margin-bottom: 20px;">📖 Об игре</h2>
+            <h2 class="text-center" style="font-size: 28px; margin-bottom: 20px;">Об игре</h2>
             <p style="color: #b8dce8; font-size: 16px; line-height: 1.8; text-align: center; max-width: 700px; margin: 0 auto;">
-                <strong style="color: #7ec8e3;">Houseki no Kuni</strong> — это фан-игра, созданная по мотивам одноимённой
-                манги и аниме. Игроки погружаются в мир, населённый кристаллическими существами,
-                и исследуют его тайны. В игре вас ждут увлекательные приключения,
-                битвы, рыбалка и множество других механик, которые делают мир живым и интересным.
+                <strong style="color: #7ec8e3;">Houseki no Kuni</strong> — это манга и аниме за авторством Харуко Итикавы.
+                Данный проект использует концепцию страны самоцветов для реализации RolePlay проекта.
             </p>
             <div style="text-align: center; margin-top: 25px;">
                 <a href="https://xelleras.github.io/HousekiNoKuniCOLLABORATION.github.io/" class="btn-primary" target="_blank">▶ Играть сейчас</a>
@@ -809,16 +769,12 @@
         </div>
     </section>
 
-    <!-- ============================================================
-    ПОДВАЛ
-    ============================================================ -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-social">
-                <a href="#" title="Telegram">📱</a>
-                <a href="#" title="VK">🌐</a>
-                <a href="#" title="YouTube">▶️</a>
-                <a href="#" title="GitHub">💻</a>
+                <a href="https://t.me/HnK_WAXTA" title="Telegram Флуд"> <img src="img/fl.png"/> </a>
+                <a href="https://t.me/LandOfTheLustrous_WAXTA" title="Telegram Кф"><img src="img/kf.png" /></a>
+                <a href="https://www.tiktok.com/@waxtalive?_r=1&_t=ZP-95RtRKcue4d" title="Tiktok"><img src="img/tt.png" /></a>
             </div>
             <p>
                 © 2026 Houseki no Kuni — Фан-игра. Все права защищены.<br>
@@ -827,44 +783,38 @@
         </div>
     </footer>
 
-    <!-- ============================================================
-    JAVASCRIPT
-    ============================================================ -->
+
     <script>
-        // ============================================================
-        // ОТКРЫТИЕ/ЗАКРЫТИЕ ПОПАПОВ НА КАРТЕ
-        // ============================================================
+
         document.addEventListener('DOMContentLoaded', function () {
 
-            // Находим все метки
+
             const markers = document.querySelectorAll('.map-marker');
             const popups = document.querySelectorAll('.marker-popup');
 
-            // Клик по метке → открыть попап
             markers.forEach(marker => {
                 marker.addEventListener('click', function (e) {
                     e.stopPropagation();
                     const popupId = this.dataset.popup;
                     const popup = document.getElementById(popupId);
 
-                    // Закрываем все попапы
+ 
                     popups.forEach(p => p.classList.remove('active'));
 
-                    // Открываем нужный
+
                     if (popup) {
                         popup.classList.add('active');
                     }
                 });
             });
 
-            // Клик по пустому месту на карте → закрыть все попапы
+
             document.querySelector('.map-image-wrapper').addEventListener('click', function (e) {
                 if (!e.target.closest('.map-marker') && !e.target.closest('.marker-popup')) {
                     popups.forEach(p => p.classList.remove('active'));
                 }
             });
 
-            // Клик по попапу не должен его закрывать
             popups.forEach(p => {
                 p.addEventListener('click', function (e) {
                     e.stopPropagation();
@@ -873,7 +823,7 @@
 
         });
 
-        // Функция закрытия попапа (вызывается из кнопки ✕)
+
         function closePopup(popupId) {
             const popup = document.getElementById(popupId);
             if (popup) {
@@ -881,9 +831,7 @@
             }
         }
 
-        // ============================================================
-        // ПЛАВНАЯ ПРОКРУТКА К ЯКОРЯМ
-        // ============================================================
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
@@ -899,23 +847,17 @@
             });
         });
 
-        // ============================================================
-        // АДАПТАЦИЯ МЕТОК ПРИ ИЗМЕНЕНИИ РАЗМЕРА КАРТЫ
-        // ============================================================
+
         function adjustMarkers() {
-            // Метки уже используют относительные проценты, ничего не делаем
-            // Но обновляем позиции попапов относительно карты
+
             const wrapper = document.getElementById('mapWrapper');
             const rect = wrapper.getBoundingClientRect();
 
             document.querySelectorAll('.marker-popup').forEach(popup => {
-                // Попапы позиционируются абсолютно внутри wrapper
-                // Их позиции заданы в стилях через top/left в процентах,
-                // поэтому они адаптируются автоматически
+
             });
         }
 
-        // При загрузке и при изменении размера окна
         window.addEventListener('load', adjustMarkers);
         window.addEventListener('resize', adjustMarkers);
 
