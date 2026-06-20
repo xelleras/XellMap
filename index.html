@@ -909,9 +909,29 @@
                     <span class="marker-label">Рыбалка</span>
                 </div>
 
-                <div class="map-marker" style="top: 17.9%; left: 48.5%;" data-popup="popup-temple">
-                    <div class="marker-dot" style="background: radial-gradient(circle, #c084fc, #7c3aed);"></div>
-                    <span class="marker-label">Школа</span>
+                <div class="map-marker" style="top: 3.9%; left: 93.7%; " data-popup="popup-fishing">
+                    <div class="marker-dot" style="background: radial-gradient(circle, #4ade80, #166534);"></div>
+                    <span class="marker-label">Рыбалка</span>
+                </div>
+
+                <div class="map-marker" style="top: 73.2%; left: 23.6%; " data-popup="popup-fishing">
+                    <div class="marker-dot" style="background: radial-gradient(circle, #4ade80, #166534);"></div>
+                    <span class="marker-label">Рыбалка</span>
+                </div>
+
+                <div class="map-marker" style="top: 24.4%; left: 20.3%; " data-popup="popup-npc">
+                    <div class="marker-dot" style="background: radial-gradient(circle, #4ade80, #166534);"></div>
+                    <span class="marker-label">Фенакит</span>
+                </div>
+
+                <div class="map-marker" style="top: 84.6%; left: 63.9%; " data-popup="popup-npc">
+                    <div class="marker-dot" style="background: radial-gradient(circle, #4ade80, #166534);"></div>
+                    <span class="marker-label">Сардоникс</span>
+                </div>
+
+                <div class="map-marker" style="top: 15.3%; left: 64.3%; " data-popup="popup-npc">
+                    <div class="marker-dot" style="background: radial-gradient(circle, #4ade80, #166534);"></div>
+                    <span class="marker-label">Пушок</span>
                 </div>
 
                 <!-- ПОПАПЫ -->
@@ -927,17 +947,19 @@
                     <p>Хо-хо риби.</p>
                 </div>
 
-                <div class="marker-popup" id="popup-temple" style="top: 20%; left: 30%;">
-                    <button class="popup-close" onclick="closePopup('popup-temple')">✕</button>
-                    <h4>Школа</h4>
-                    <p>Место знаний и обучения.</p>
+
+                <div class="marker-popup" id="popup-npc" style="top: 35%; left: 15%;">
+                    <button class="popup-close" onclick="closePopup('popup-npc')">✕</button>
+                    <h4>NPC</h4>
+
                 </div>
+
             </div>
 
             <div class="map-legend">
                 <span class="legend-item"><span class="legend-color player"></span> Игрок</span>
                 <span class="legend-item"><span class="legend-color fishing"></span> Рыбные места</span>
-                <span class="legend-item"><span class="legend-color dungeon"></span> NPC</span>
+                <span class="legend-item"><span class="legend-color dungeon"></span> Персонажи</span>
             </div>
         </div>
     </section>
@@ -1058,27 +1080,27 @@
         const characters = [{
             name: 'Шакавака',
             image: 'img/shak.png',
-            description: 'Собак.'
+            description: 'Последний лунянин, которого застали новые самоцветы. Шака очень любопытный пес по своей натуре, зачастую его можно встретить вместе с Шаттукит.'
         }, {
             name: 'Шаттукит',
             image: 'img/shat.png',
-            description: 'Я ебанутыыыый.'
+            description: 'Вечно скучающий исследователь, который давно знает остров наизусть. Самый молодой самоцвет на данный момент.'
         }, {
                 name: 'Пушок',
                 image: 'img/push.png',
-                description: 'Срак.'
+                description: 'Однажды вышедший из моря адмирабилис. О нем известно не так много.'
             }, {
                 name: 'Фенакит',
                 image: 'img/fen.png',
-                description: 'Срак.'
+                description: 'Самоцвет, знающий о травах все. Самая старшая из шестерки. Еще успела застать времена, когда патрули по острову не были бесполезными.'
             }, {
             name: 'Андорит',
             image: 'img/ando.png',
-            description: 'че.'
+            description: 'Самоцвет, крайне увлеченный своей работой. Обожает придумывать новые уникальные наряды для каждого, кто к ней обратился (или не обратился). Подозрительно пристально поглядывает на Пушка.'
         }, {
             name: 'Сардоникс',
             image: 'img/onix.png',
-            description: 'Жиза.'
+            description: 'Одна из немногих, кто остался патрулировать остров после исчезновения лунян.'
         }];
 
         const charactersRow = document.getElementById('charactersRow');
