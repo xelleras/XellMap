@@ -116,33 +116,16 @@
 
         /* ===== ГИФКА В ПРАВОМ НИЖНЕМ УГЛУ ===== */
         .floating-gif {
-            position: fixed;
+            position: absolute;
             bottom: 20px;
             right: 20px;
             z-index: 9999;
-            width: 100px; /* ← Измените под свой размер */
+            width: 100px; 
             height: auto;
-            pointer-events: none; /* Чтобы гифка не мешала кликам */
-            animation: float 3s ease-in-out infinite;
+            pointer-events: none; 
         }
 
-        /* Лёгкая анимация покачивания (опционально) */
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-8px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
-        }
-
-        /* Для мобильных устройств можно сделать меньше */
-        @media (max-width: 480px) {
+                @media (max-width: 480px) {
             .floating-gif {
                 width: 60px;
                 bottom: 10px;
