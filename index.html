@@ -114,6 +114,41 @@
                     display: none;
                 }
 
+        /* ===== ГИФКА В ПРАВОМ НИЖНЕМ УГЛУ ===== */
+        .floating-gif {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            width: 100px; /* ← Измените под свой размер */
+            height: auto;
+            pointer-events: none; /* Чтобы гифка не мешала кликам */
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Лёгкая анимация покачивания (опционально) */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Для мобильных устройств можно сделать меньше */
+        @media (max-width: 480px) {
+            .floating-gif {
+                width: 60px;
+                bottom: 10px;
+                right: 10px;
+            }
+        }
         /* ===== ВКЛАДКА "КАК ИГРАТЬ?" ===== */
         #how-to-play {
             display: none;
@@ -1021,7 +1056,7 @@
 </head>
 <body>
 
-
+    <img src="img/gif/IT.gif" alt="Гифка" class="floating-gif" />
     <header class="header">
         <div class="header-content">
             <div class="logo">
@@ -1238,17 +1273,17 @@
             <h3>Управление на ПК</h3>
             <div class="htp-grid">
                 <div class="htp-card">
-                    <img src="img/pc-move.gif" alt="Движение на ПК" />
+                    <img src="img/gif/PKRun.gif" alt="Движение на ПК" />
                     <h4>Перемещение</h4>
-                    <p>Используйте клавиши <strong>←↑→↓</strong> для движения по миру.</p>
+                    <p>Используйте клавиши <strong>←↑→↓</strong> для движения по миру и <strong>SHIFT</strong> для бега.</p>
                 </div>
                 <div class="htp-card">
-                    <img src="img/pc-interact.gif" alt="Взаимодействие на ПК" />
+                    <img src="img/gif/PKZet.gif" alt="Взаимодействие на ПК" />
                     <h4>Взаимодействие</h4>
                     <p>Нажмите <strong>Z</strong> или <strong>Enter</strong> для взаимодействия с объектами.</p>
                 </div>
                 <div class="htp-card">
-                    <img src="img/pc-menu.gif" alt="Меню на ПК" />
+                    <img src="img/gif/PKMenu.gif" alt="Меню на ПК" />
                     <h4>Меню</h4>
                     <p>Нажмите <strong>X</strong> или <strong>Esc</strong> для открытия или закрытия игрового меню.</p>
                 </div>
