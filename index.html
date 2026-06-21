@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Houseki no Kuni — Фан-игра</title>
     <style>
-        /* ===== ОБЩИЕ СТИЛИ ===== */
+
         * {
             margin: 0;
             padding: 0;
@@ -20,7 +20,7 @@
             line-height: 1.6;
         }
 
-        /* ===== ШАПКА ===== */
+
         .header {
             background: linear-gradient(135deg, rgba(10, 15, 31, 0.95), rgba(26, 42, 92, 0.9));
             padding: 20px 0;
@@ -114,25 +114,7 @@
                     display: none;
                 }
 
-        /* ===== ГИФКА В ПРАВОМ НИЖНЕМ УГЛУ ===== */
-        .floating-gif {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9999;
-            width: 100px; 
-            height: auto;
-            pointer-events: none; 
-        }
 
-                @media (max-width: 480px) {
-            .floating-gif {
-                width: 60px;
-                bottom: 10px;
-                right: 10px;
-            }
-        }
-        /* ===== ВКЛАДКА "КАК ИГРАТЬ?" ===== */
         #how-to-play {
             display: none;
             max-width: 1200px;
@@ -232,7 +214,7 @@
                 opacity: 0.85;
             }
 
-        /* ===== КОМАНДЫ ЧАТА ===== */
+        
         .htp-commands {
             margin-top: 30px;
             display: flex;
@@ -277,7 +259,6 @@
                 opacity: 0.7;
             }
 
-        /* ===== ГЕРОЙ ===== */
         .hero {
             text-align: center;
             padding: 80px 20px 60px;
@@ -369,7 +350,7 @@
                 transform: translateY(-3px);
             }
 
-        /* ===== КАРТА ===== */
+
         .section-map {
             max-width: 1200px;
             margin: 0 auto;
@@ -585,7 +566,7 @@
                 background: radial-gradient(circle, #e35539, #7c3aed);
             }
 
-        /* ===== МЕХАНИКИ ===== */
+
         .section-features {
             max-width: 1200px;
             margin: 0 auto;
@@ -663,7 +644,7 @@
                     border-radius: 12px;
                 }
 
-        /* ===== ПЕРСОНАЖИ ===== */
+    
         .section-characters {
             max-width: 1200px;
             margin: 0 auto;
@@ -863,19 +844,31 @@
         .footer {
             background: rgba(10, 15, 31, 0.8);
             border-top: 1px solid rgba(15, 106, 217, 0.15);
-            padding: 40px 20px;
-            text-align: center;
+            padding: 20px 40px;
             margin-top: 20px;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
         }
 
         .footer p {
             color: #4a6a7a;
             font-size: 14px;
+            margin: 0;
         }
 
         .footer a {
@@ -890,8 +883,6 @@
         .footer-social {
             display: flex;
             gap: 20px;
-            justify-content: center;
-            margin-bottom: 15px;
         }
 
             .footer-social a {
@@ -912,6 +903,17 @@
 
             .footer-social a:hover img {
                 box-shadow: 0 0 20px rgba(15, 106, 217, 0.4);
+            }
+
+        .footer-gif {
+            flex-shrink: 0;
+        }
+
+            .footer-gif img {
+                width: 80px;
+                height: auto;
+                border-radius: 12px;
+                display: block;
             }
 
 
@@ -985,6 +987,20 @@
             .htp-grid {
                 grid-template-columns: 1fr;
             }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-left {
+                align-items: center;
+            }
+
+            .footer-gif img {
+                width: 60px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1017,6 +1033,10 @@
                 width: 100%;
                 justify-content: center;
             }
+
+            .footer-gif img {
+                width: 50px;
+            }
         }
 
 
@@ -1039,7 +1059,7 @@
 </head>
 <body>
 
-    
+
     <header class="header">
         <div class="header-content">
             <div class="logo">
@@ -1059,7 +1079,6 @@
         </div>
     </header>
 
-    <!-- ===== ОСНОВНОЙ КОНТЕНТ (ГЛАВНАЯ) ===== -->
     <div id="main-content">
 
         <section class="hero">
@@ -1084,7 +1103,6 @@
                 <div class="map-image-wrapper" id="mapWrapper">
                     <img src="img/map.png" alt="Карта мира" id="mapImage" style="width:100%; height:auto; border-radius:12px;" />
 
-                    <!-- МЕТКИ -->
                     <div class="map-marker" style="top: 27.5%; left: 48.6%;" data-popup="popup-player">
                         <div class="marker-dot"></div>
                         <span class="marker-label">Игрок</span>
@@ -1120,7 +1138,7 @@
                         <span class="marker-label">Пушок</span>
                     </div>
 
-                    <!-- ПОПАПЫ -->
+        
                     <div class="marker-popup" id="popup-player" style="top: 30%; left: 5%;">
                         <button class="popup-close" onclick="closePopup('popup-player')">✕</button>
                         <h4>Игрок</h4>
@@ -1150,7 +1168,7 @@
             </div>
         </section>
 
-        <!-- ===== МЕХАНИКИ ===== -->
+
         <section class="section-features" id="features">
             <h2 class="section-title">Механики игры</h2>
             <p class="section-subtitle">Узнайте, что вас ждёт в этом РП проекте</p>
@@ -1198,26 +1216,26 @@
             </div>
         </section>
 
-        <!-- ===== ПЕРСОНАЖИ ===== -->
+
         <section class="section-characters" id="characters">
             <h2 class="section-title">Персонажи</h2>
             <p class="section-subtitle">нажмите, чтобы прочитать описание</p>
 
             <div class="characters-scroll">
                 <div class="characters-row" id="charactersRow">
-                    <!-- Карточки будут добавлены через JavaScript -->
+
                 </div>
             </div>
         </section>
 
-        <!-- ===== КАРУСЕЛЬ АРТОВ (ДОСКА) ===== -->
+
         <section class="section-carousel" id="carousel">
             <h2 class="section-title">Доска артов</h2>
             <p class="section-subtitle">Нажмите на арт, чтобы перейти к посту в Telegram</p>
 
             <div class="carousel-wrapper">
                 <div class="carousel-track" id="carouselTrack">
-                    <!-- Элементы добавляются через JavaScript -->
+           
                 </div>
             </div>
             <div class="carousel-controls">
@@ -1226,7 +1244,7 @@
             </div>
         </section>
 
-        <!-- ===== ОБ ИГРЕ ===== -->
+       
         <section class="section-features" id="about" style="padding-top: 0;">
             <div style="max-width: 900px; margin: 0 auto; background: linear-gradient(145deg, rgba(10,15,31,0.6), rgba(26,42,92,0.3)); border-radius: 20px; padding: 40px; border: 1px solid rgba(15,106,217,0.15);">
                 <h2 class="text-center" style="font-size: 28px; margin-bottom: 20px;">Об игре</h2>
@@ -1240,8 +1258,7 @@
             </div>
         </section>
 
-    </div><!-- /main-content -->
-    <!-- ===== ВКЛАДКА "КАК ИГРАТЬ?" ===== -->
+    </div>
     <section id="how-to-play">
         <h2 class="section-title">Как играть?</h2>
         <p class="section-subtitle">Выберите ваше устройство, чтобы увидеть инструкцию</p>
@@ -1251,7 +1268,6 @@
             <button class="htp-tab-btn" data-htp="mobile">Телефон</button>
         </div>
 
-        <!-- ПК -->
         <div class="htp-panel active" id="htp-pc">
             <h3>Управление на ПК</h3>
             <div class="htp-grid">
@@ -1274,7 +1290,7 @@
 
         </div>
 
-        <!-- Телефон -->
+   
         <div class="htp-panel" id="htp-mobile">
             <h3>Управление на телефоне</h3>
             <div class="htp-grid">
@@ -1296,7 +1312,6 @@
             </div>
         </div>
 
-        <!-- Команды чата -->
         <div style="margin-top: 40px;">
             <h3 style="color: #ccdaeb; text-align: center; margin-bottom: 15px;">Команды чата</h3>
             <div class="htp-commands">
@@ -1358,32 +1373,34 @@
         </div>
     </section>
 
-    <!-- ===== ПОДВАЛ ===== -->
+
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-social">
-                <a href="https://t.me/HnK_WAXTA" title="Telegram Флуд">
-                    <img src="img/fl.png" alt="Флуд" />
-                </a>
-                <a href="https://t.me/LandOfTheLustrous_WAXTA" title="Telegram Кф">
-                    <img src="img/kf.png" alt="Кф" />
-                </a>
-                <a href="https://www.tiktok.com/@housekinokuniflood?_t=8jWgt2wD7QE&_r=1" title="Tiktok">
-                    <img src="img/tt.png" alt="TikTok" />
-                </a>
+            <div class="footer-left">
+                <div class="footer-social">
+                    <a href="https://t.me/HnK_WAXTA" title="Telegram Флуд">
+                        <img src="img/fl.png" alt="Флуд" />
+                    </a>
+                    <a href="https://t.me/LandOfTheLustrous_WAXTA" title="Telegram Кф">
+                        <img src="img/kf.png" alt="Кф" />
+                    </a>
+                    <a href="https://www.tiktok.com/@housekinokuniflood?_t=8jWgt2wD7QE&_r=1" title="Tiktok">
+                        <img src="img/tt.png" alt="TikTok" />
+                    </a>
+                </div>
+                <p>
+                    © 2026 Houseki no Kuni — Фан-игра. Все права защищены.<br />
+                    Сделано с вдохновением по мотивам <a href="#" target="_blank">Houseki no Kuni</a>
+                </p>
             </div>
-            <p>
-                © 2026 Houseki no Kuni — Фан-игра. Все права защищены.<br />
-                Сделано с вдохновением по мотивам <a href="#" target="_blank">Houseki no Kuni</a>
-            </p>
+            <div class="footer-gif">
+                <img src="img/gif/IT.gif" alt="Гифка" />
+            </div>
         </div>
-        <img src="img/gif/IT.gif" alt="Гифка" class="floating-gif" />
     </footer>
 
     <script>
-        // ============================================================
-        // ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК (Главная / Как играть?)
-        // ============================================================
+
         const mainContent = document.getElementById('main-content');
         const howToPlaySection = document.getElementById('how-to-play');
         const tabLinks = document.querySelectorAll('nav a[data-tab]');
@@ -1395,7 +1412,7 @@
             } else if (tabId === 'how-to-play') {
                 mainContent.style.display = 'none';
                 howToPlaySection.classList.add('active');
-                // Прокручиваем к началу вкладки
+    
                 howToPlaySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
@@ -1408,14 +1425,12 @@
             });
         });
 
-        // Если в URL есть якорь, показываем соответствующую вкладку
+
         if (window.location.hash === '#how-to-play') {
             showTab('how-to-play');
         }
 
-        // ============================================================
-        // ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК ВНУТРИ "КАК ИГРАТЬ?" (ПК / Телефон)
-        // ============================================================
+
         const htpTabs = document.querySelectorAll('.htp-tab-btn');
         const htpPanels = {
             pc: document.getElementById('htp-pc'),
@@ -1434,9 +1449,7 @@
             });
         });
 
-        // ============================================================
-        // ПЕРСОНАЖИ
-        // ============================================================
+   
         const characters = [{
             name: 'Шакавака',
             image: 'img/shak.png',
@@ -1499,9 +1512,7 @@
             document.querySelectorAll('.character-desc').forEach(d => d.classList.remove('open'));
         });
 
-        // ============================================================
-        // АРТЫ
-        // ============================================================
+
         const arts = [
             { image: 'img/pic1.png', link: 'https://t.me/LandOfTheLustrous_WAXTA/12' },
             { image: 'img/pic2.png', link: 'https://t.me/LandOfTheLustrous_WAXTA/12' },
@@ -1535,9 +1546,7 @@
             track.scrollBy({ left: 220, behavior: 'smooth' });
         });
 
-        // ============================================================
-        // МЕТКИ НА КАРТЕ
-        // ============================================================
+
         document.addEventListener('DOMContentLoaded', function () {
             const markers = document.querySelectorAll('.map-marker');
             const popups = document.querySelectorAll('.marker-popup');
@@ -1576,9 +1585,6 @@
             }
         }
 
-        // ============================================================
-        // ПЛАВНАЯ ПРОКРУТКА К ЯКОРЯМ
-        // ============================================================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
@@ -1594,15 +1600,12 @@
             });
         });
 
-        // ============================================================
-        // АДАПТАЦИЯ КАРТЫ
-        // ============================================================
+     
         function adjustMarkers() { }
 
         window.addEventListener('load', adjustMarkers);
         window.addEventListener('resize', adjustMarkers);
 
-        console.log('🌟 Houseki no Kuni — сайт загружен!');
     </script>
 
 </body>
